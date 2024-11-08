@@ -1,9 +1,9 @@
 <?php
-
     require_once 'usuario.php';
     $usuario = new Usuario();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,69 +12,94 @@
     <title>Tela Cadastro</title>
 </head>
 <body>
-    <h2>Tela Cadastro</h2>
-    <br><br>
+    <h2>CADASTRO DE USUÁRIO</h2><br>
     <form action="" method="post">
-        <label>Nome:</label>
-        <input type="text" name="nome" id="" placeholder="Nome completo">
-        <br>
-        <label>Email:</label>
-        <input type="email" name="email" id="" placeholder="email completo">
-        <br>
-        <label>Telefone:</label>
-        <input type="tel" name="telefone" id="" placeholder="telefone completo">
-        <br>
-        <label>Senha:</label>
-        <input type="password" name="senha" id="" placeholder="senha completo">
-        <br>
-        <label>Confirmar Senha:</label>
-        <input type="password" name="confsenha" id="" placeholder="confirme sua senha">
-        <br>
-        <input type="submit" value="CADASTRAR">
-        <br>
+    <label>Nome:</label><br>
+    <input type="text" name="nome" id="" placeholder="Nome Completo"><br>
+    <label>Email:</label><br>
+    <input type="email" name="email" id="" placeholder="Digite o Email"><br>
+    <label>Telefone:</label><br>
+    <input type="tel" name="telefone" id="" placeholder="Telefone Completo"><br>
+    <label>Senha:</label><br>
+    <input type="password" name="senha" id="" placeholder="Digite sua Senha"><br>
+    <label>Confirmar Senha:</label><br>
+    <input type="password" name="confSenha" id="" placeholder="Confirme sua senha"><br>
+    <input type="submit" value="CADASTRAR">
     </form>
 
     <?php
-
-    if(isset($_POST['nome']))
-    {
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $telefone = $_POST['telefone'];
-        $senha = $_POST['senha'];
-        $confsenha = addslashes($_POST['confsenha']);
-
-        if(!empty($nome) && !empty($email) && !empty($telefone) && !empty($senha) && !empty($confsenha))
+         
+        if(isset($_POST['nome'])) 
         {
-            $usuario->conectar("cadastrousuarioturma33", "localhost", "root", "");
-            if($usuario->msgErro == "")
-            {
+            $nome = $_POST['nome'];
+            $telefone = $_POST['telefone'];
+            $email = $_POST['email'];
+            $senha = $_POST['senha'];
+            $confSenha = addslashes($_POST['confSenha']);
                 
-                if($senha == $confsenha)
+            if(!empty($nome) && !empty($email) && !empty($telefone) && !empty($senha) && !empty($confSenha))
+            {
+                // echo "Passou pela verificação dos campo preenchidos";
+                $usuario->conectar("cadastrousuarioturma33","localhost","root", "");
+                if($usuario->msgErro == "")
                 {
-                    if($usuario->cadastrar($nome, $telefone, $email, $senha))
+                    
+                    if($senha == $confSenha)
+                    {
+                        if($usuario->cadastrar($nome, $telefone, $email, $senha))
+                        {
+                            ?>
+                                <!-- bloco de HTML -->
+                                <div class="msg-sucesso">
+                                    <p>Cadastrado com Sucesso</p>
+                                    <p>Clique <a href="login.php">aqui </a>para logar.</p>
+
+                                </div>
+
+                            <?php
+                        }
+                        else
+                        {
+                            ?>
+                                <div class="msg-erro">
+                                    <p>Email Já Cadastrado.</p>
+                                </div>
+
+                            <?php
+                        }
+                    }
+                    else
                     {
                         ?>
-                            <!-- bloco HTML -->
-
-                            <div class="msg-sucesso">
-                                <p>Cadastrado com sucesso</p>
-                                <p>Clique <a href="login.php">aqui</a> para logar.</p>
+                            <div class="msg-erro">
+                                <p>Senha e Confirmar senha não conferem.
+                                </p>
                             </div>
 
                         <?php
                     }
                 }
-
+                else
+                {
+                    ?>
+                    <div class="msg-erro">
+                        <?php echo "Erro: ".$usuario->$msgErro;?>
+                    </div>
+                    <?php
+                }
             }
             else
             {
-                echo "tente outra vez".usuario->msgErro;
+                ?>
+                    <div class="msg-erro">
+                        <p>Preencha todos os Campos</p>
+                    </div>
+                <?php
             }
-        }
 
-    }
+        }    
     ?>
+
 
 </body>
 </html>
