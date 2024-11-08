@@ -33,6 +33,7 @@
                     <td><?php echo $pessoa['nome'];?></td>
                     <td><?php echo $pessoa['email'];?></td>
                     <td><?php echo $pessoa['telefone'];?></td>
+                    <td><a href="editar.php"><button>Editar</button></a></td>
                 </tr>
             <?php 
                 endforeach;
