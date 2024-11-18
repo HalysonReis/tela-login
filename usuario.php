@@ -89,8 +89,16 @@
                 return false;
             }
         }
+        public function editarUsuario($nome, $email, $telefone, $id);
+        {
+            global $pdo;
 
-
+            $sqlEditar = $pdo->prepare("UPDATE usuario set nome = :n, email = :e, telefone = :t WHERE id = :i");
+            $sqlEditar->bindValue(":n", $nome);
+            $sqlEditar->bindValue(":e", $email);
+            $sqlEditar->bindValue(":t", $telefone);
+            $sqlEditar->execute();
+        }
 
     }
 
