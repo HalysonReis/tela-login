@@ -30,10 +30,13 @@
                     foreach ($dados as $pessoa):
             ?>
                 <tr>
-                    <td><?php echo $pessoa['nome'];?></td>
-                    <td><?php echo $pessoa['email'];?></td>
-                    <td><?php echo $pessoa['telefone'];?></td>
-                    <td><a href="editar.php"><button>Editar</button></a></td>
+
+                    <form action="editar.php" method="get">
+                        <td><input type="text" name="nome"  value="<?php echo $pessoa['nome'];?>"></td>
+                        <td><input type="text" name="email" value="<?php echo $pessoa['email'];?>">></td>
+                        <td><input type="text" name="telefone" value="<?php echo $pessoa['telefone'];?>">></td>
+                        <td><input type="submit" value="editar"></a></td>
+                    </form>
                 </tr>
             <?php 
                 endforeach;

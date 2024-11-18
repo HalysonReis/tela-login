@@ -2,7 +2,18 @@
     require_once 'usuario.php';
     $usuario = new Usuario();
     $usuario->conectar("cadastrousuarioturma33","localhost","root", "");
-    $dados = $usuario->listarUsuarios();
+
+    if (isset($_GET)) {
+
+        $email = $_GET['email'];
+
+        $oi = $usuario->getUsuario($email);
+
+        if (isset($oi)) {
+
+            print_r ($oi);  
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,18 +28,18 @@
     <form action="" method="post">
 
     <label>Nome:</label><br>
-    <input type="text" name="nome" id="" placeholder="Nome Completo"><br>
+    <input type="text" name="nome" value="<?php echo $oi['id'];?>" ><br>
 
     <label>Email:</label><br>
-    <input type="email" name="email" id="" placeholder="Digite o Email"><br>
+    <input type="email" name="email" value="<?php echo $oi['nome'];?>"><br>
 
     <label>Telefone:</label><br>
-    <input type="tel" name="telefone" id="" placeholder="Telefone Completo"><br>
+    <input type="tel" name="telefone" value="<?php echo $oi['email'];?>"><br>
 
     <label>Senha:</label><br>
-    <input type="password" name="senha" id="" placeholder="Digite sua Senha"><br>
+    <input type="text" name="senha" value="<?php echo $oi['senha'];?>"><br>
 
-    <input type="submit" value="EDITAR">
+    <input type="submit" value="Salvar">
     </form>
 
 
