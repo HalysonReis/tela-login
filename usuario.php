@@ -121,6 +121,15 @@
             $sqlEditar->execute();
         }
 
+        public function deletarUsuario($id)
+        {
+            global $pdo;
+
+            $sqlDeletar = $pdo->prepare("DELETE FROM usuario WHERE id_usuario = :i");
+            $sqlDeletar->bindValue(":i", $id);
+            $sqlDeletar->execute();
+        }
+
     }
 
 

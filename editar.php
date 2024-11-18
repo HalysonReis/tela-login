@@ -15,15 +15,24 @@
         }
     }
 
-    if (!empty($_POST['nome']))
-    {
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $telefone = $_POST['telefone'];
-        $id = $_POST['id'];
-
-        $usuario->editarUsuario($nome, $email, $telefone, $id);
+    if ($_POST['atualizar'] == 'Salvar alteracoes'){
+        if (!empty($_POST['nome']))
+        {
+            $nome = $_POST['nome'];
+            $email = $_POST['email'];
+            $telefone = $_POST['telefone'];
+            $id = $_POST['id'];
+    
+            $usuario->editarUsuario($nome, $email, $telefone, $id);
+        }
     }
+    else if ($_POST['atualizar'] == 'excluir usuario') {
+        $id = $_POST['id'];
+        $usuario->deletarUsuario($id);
+    }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +61,8 @@
     <label>Senha:</label><br>
     <input type="text" name="senha" value="<?php echo $oi['senha'];?>"><br>
 
-    <input type="submit" value="Salvar">
+    <input type="submit" name="atualizar" value="Salvar alteracoes">
+    <input type="submit" name="atualizar" value="excluir usuario">
     </form>
 
 

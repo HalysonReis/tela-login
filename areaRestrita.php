@@ -35,7 +35,8 @@
                         <td><input type="text" name="nome"  value="<?php echo $pessoa['nome'];?>" disabled></td>
                         <td><input type="text" name="email" value="<?php echo $pessoa['email'];?>" ></td>
                         <td><input type="text" name="telefone" value="<?php echo $pessoa['telefone'];?>" disabled></td>
-                        <td><input type="submit" value="editar"></a></td>
+                        <td><input type="submit" name="qqnome" value="editar"></a></td>
+
                     </form>
                 </tr>
             <?php 
