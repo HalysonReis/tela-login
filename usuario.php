@@ -100,7 +100,7 @@
             $sqlEditar->execute();
             if($sqlEditar->rowCount()>0)
             {
-                $dados = $sqlEditar->fetchAll(PDO::FETCH_ASSOC);
+                $dados = $sqlEditar->fetch();
                 return $dados;
             }
             else
@@ -113,7 +113,7 @@
         {
             global $pdo;
 
-            $sqlEditar = $pdo->prepare("UPDATE usuario set nome = :n, email = :e, telefone = :t WHERE id = :i");
+            $sqlEditar = $pdo->prepare("UPDATE usuario set nome = :n, email = :e, telefone = :t WHERE id_usuario = :i");
             $sqlEditar->bindValue(":n", $nome);
             $sqlEditar->bindValue(":e", $email);
             $sqlEditar->bindValue(":t", $telefone);

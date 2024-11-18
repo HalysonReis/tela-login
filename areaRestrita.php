@@ -32,9 +32,9 @@
                 <tr>
 
                     <form action="editar.php" method="get">
-                        <td><input type="text" name="nome"  value="<?php echo $pessoa['nome'];?>"></td>
-                        <td><input type="text" name="email" value="<?php echo $pessoa['email'];?>">></td>
-                        <td><input type="text" name="telefone" value="<?php echo $pessoa['telefone'];?>">></td>
+                        <td><input type="text" name="nome"  value="<?php echo $pessoa['nome'];?>" disabled></td>
+                        <td><input type="text" name="email" value="<?php echo $pessoa['email'];?>" ></td>
+                        <td><input type="text" name="telefone" value="<?php echo $pessoa['telefone'];?>" disabled></td>
                         <td><input type="submit" value="editar"></a></td>
                     </form>
                 </tr>

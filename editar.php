@@ -14,6 +14,16 @@
             print_r ($oi);  
         }
     }
+
+    if (!empty($_POST['nome']))
+    {
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $telefone = $_POST['telefone'];
+        $id = $_POST['id'];
+
+        $usuario->editarUsuario($nome, $email, $telefone, $id);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -28,13 +38,16 @@
     <form action="" method="post">
 
     <label>Nome:</label><br>
-    <input type="text" name="nome" value="<?php echo $oi['id'];?>" ><br>
+    <input type="text" name="id" value="<?php echo $oi['id_usuario'];?>" ><br>
+    
+    <label>Nome:</label><br>
+    <input type="text" name="nome" value="<?php echo $oi['nome'];?>" ><br>
 
     <label>Email:</label><br>
-    <input type="email" name="email" value="<?php echo $oi['nome'];?>"><br>
+    <input type="email" name="email" value="<?php echo $oi['email'];?>"><br>
 
     <label>Telefone:</label><br>
-    <input type="tel" name="telefone" value="<?php echo $oi['email'];?>"><br>
+    <input type="tel" name="telefone" value="<?php echo $oi['telefone'];?>"><br>
 
     <label>Senha:</label><br>
     <input type="text" name="senha" value="<?php echo $oi['senha'];?>"><br>
