@@ -8,29 +8,28 @@
         $email = $_GET['email'];
 
         $oi = $usuario->getUsuario($email);
-
-        if (isset($oi)) {
-
-            print_r ($oi);  
-        }
     }
 
-    if ($_POST['atualizar'] == 'Salvar alteracoes'){
-        if (!empty($_POST['nome']))
-        {
-            $nome = $_POST['nome'];
-            $email = $_POST['email'];
-            $telefone = $_POST['telefone'];
+    if (!empty($_POST['atualizar'])){
+
+        
+        if ($_POST['atualizar'] == 'Salvar alteracoes'){
+            if (!empty($_POST['nome']))
+            {
+                $nome = $_POST['nome'];
+                $email = $_POST['email'];
+                $telefone = $_POST['telefone'];
+                $id = $_POST['id'];
+                
+                $usuario->editarUsuario($nome, $email, $telefone, $id);
+            }
+        }
+        else if ($_POST['atualizar'] == 'excluir usuario') {
             $id = $_POST['id'];
-    
-            $usuario->editarUsuario($nome, $email, $telefone, $id);
+            $usuario->deletarUsuario($id);
         }
+        
     }
-    else if ($_POST['atualizar'] == 'excluir usuario') {
-        $id = $_POST['id'];
-        $usuario->deletarUsuario($id);
-    }
-
 
 
 ?>
@@ -65,7 +64,7 @@
     <input type="submit" name="atualizar" value="excluir usuario">
     </form>
 
-
+    <a href="areaRestrita.php"><button>Voltar</button></a>
 
 </body>
 </html>
